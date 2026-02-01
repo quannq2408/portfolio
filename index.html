@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Web Developer - FPT Polytechnic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #f59e0b, #ea580c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(6deg); }
+            50% { transform: translateY(-20px) rotate(8deg); }
+            100% { transform: translateY(0px) rotate(6deg); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Scroll Reveal Base Style */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered Delay */
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Hover Glow Effect */
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(234, 88, 12, 0.3);
+        }
+
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-[100] bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="#home">
+                    <div class="flex-shrink-0 font-bold text-xl md:text-2xl tracking-tight text-orange-600 hover:scale-105 transition-transform cursor-pointer">
+                        QUAN<span class="text-slate-800">PORTFOLIO</span>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8 font-medium">
+                        <a href="#home" class="hover:text-orange-600 transition-colors relative group">
+                            Trang chủ
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all group-hover:w-full"></span>
+                        </a>
+                        <a href="#about" class="hover:text-orange-600 transition-colors relative group">
+                            Giới thiệu
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all group-hover:w-full"></span>
+                        </a>
+                        <a href="#skills" class="hover:text-orange-600 transition-colors relative group">
+                            Kỹ năng
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all group-hover:w-full"></span>
+                        </a>
+                        <a href="#projects" class="hover:text-orange-600 transition-colors relative group">
+                            Dự án
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all group-hover:w-full"></span>
+                        </a>
+                        <a href="#contact" class="bg-orange-600 text-white px-5 py-2 rounded-full hover:bg-orange-700 hover:shadow-lg transition-all active:scale-95">Liên hệ</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-slate-800 p-2 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[90] bg-white md:hidden flex flex-col items-center justify-center space-y-8 text-xl font-semibold">
+        <button id="close-menu" class="absolute top-5 right-5 text-3xl text-slate-800">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home" class="mobile-link hover:text-orange-600">Trang chủ</a>
+        <a href="#about" class="mobile-link hover:text-orange-600">Giới thiệu</a>
+        <a href="#skills" class="mobile-link hover:text-orange-600">Kỹ năng</a>
+        <a href="#projects" class="mobile-link hover:text-orange-600">Dự án</a>
+        <a href="#contact" class="bg-orange-600 text-white px-10 py-3 rounded-full mobile-link shadow-lg">Liên hệ</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-28 md:pt-32 pb-16 md:pb-20 px-4 overflow-hidden">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="w-full md:w-1/2 mb-12 md:mb-0 reveal text-center md:text-left">
+                <h2 class="text-orange-600 font-semibold mb-2 tracking-wide uppercase text-xs md:text-sm">Chào bạn, tôi là</h2>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
+                    Lập trình viên <span class="gradient-text">Web Fullstack</span>
+                </h1>
+                <p class="text-base md:text-lg text-slate-600 mb-8 max-w-lg mx-auto md:mx-0">
+                    Sinh viên năm cuối chuyên ngành Lập trình Web tại FPT Polytechnic. Đam mê xây dựng những trải nghiệm người dùng mượt mà và hệ thống backend ổn định.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#projects" class="bg-slate-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-slate-800 transition-all shadow-lg hover:-translate-y-1">Xem dự án</a>
+                    <a href="Pham_Van_Quan.pdf" download="Pham_Van_Quan.pdf" class="border border-slate-300 bg-white text-slate-700 px-8 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-all hover:shadow-md">Tải CV (PDF)</a>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center reveal reveal-delay-2">
+                <div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80">
+                    <div class="absolute inset-0 bg-orange-200 rounded-2xl animate-float"></div>
+                    <img src="quan.png" alt="Avatar" class="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-xl border-4 border-white transition-transform duration-500 hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">Về bản thân</h3>
+                <div class="w-16 h-1 bg-orange-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=800&q=80" alt="Work space" class="rounded-2xl shadow-lg hover:grayscale-0 md:grayscale transition-all duration-700">
+                </div>
+                <div class="space-y-6">
+                    <div class="reveal reveal-delay-1">
+                        <h4 class="text-xl md:text-2xl font-bold mb-4 text-slate-800">Sinh viên "Thực học - Thực nghiệp"</h4>
+                        <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                            Tại FPT Polytechnic, tôi đã được rèn luyện thông qua mô hình học tập dựa trên dự án (PBL). Điều này giúp tôi không chỉ nắm vững lý thuyết mà còn có khả năng triển khai các sản phẩm thực tế đáp ứng yêu cầu của doanh nghiệp.
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start reveal reveal-delay-2">
+                            <div class="bg-orange-100 p-2 rounded-lg mr-4 group hover:bg-orange-600 transition-colors">
+                                <i class="fas fa-graduation-cap text-orange-600 group-hover:text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm md:text-base">Học vấn</h5>
+                                <p class="text-xs md:text-sm text-slate-500">Cao đẳng FPT Polytechnic (Chuyên ngành Lập trình Web - GPA: 3.57)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start reveal reveal-delay-3">
+                            <div class="bg-orange-100 p-2 rounded-lg mr-4 group hover:bg-orange-600 transition-colors">
+                                <i class="fas fa-bullseye text-orange-600 group-hover:text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm md:text-base">Mục tiêu</h5>
+                                <p class="text-xs md:text-sm text-slate-500">Trở thành một Senior Fullstack Developer trong 5 năm tới</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 md:py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">Kỹ năng chuyên môn</h3>
+                <p class="text-slate-500 text-sm md:text-base">Những công cụ và công nghệ tôi sử dụng thành thạo</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- Frontend -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 reveal reveal-delay-1 hover-glow">
+                    <div class="text-orange-600 text-2xl md:text-3xl mb-4 text-center"><i class="fab fa-html5"></i></div>
+                    <h5 class="font-bold text-center text-sm md:text-base">Frontend</h5>
+                    <p class="text-[10px] md:text-xs text-slate-400 text-center mt-2">HTML5, CSS3, JavaScript</p>
+                </div>
+                <!-- Backend -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 reveal reveal-delay-2 hover-glow">
+                    <div class="text-orange-600 text-2xl md:text-3xl mb-4 text-center"><i class="fab fa-php"></i></div>
+                    <h5 class="font-bold text-center text-sm md:text-base">Backend</h5>
+                    <p class="text-[10px] md:text-xs text-slate-400 text-center mt-2">PHP</p>
+                </div>
+                <!-- Database -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 reveal reveal-delay-3 hover-glow">
+                    <div class="text-orange-600 text-2xl md:text-3xl mb-4 text-center"><i class="fas fa-database"></i></div>
+                    <h5 class="font-bold text-center text-sm md:text-base">Database</h5>
+                    <p class="text-[10px] md:text-xs text-slate-400 text-center mt-2">MySQL, MongoDB</p>
+                </div>
+                <!-- Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 reveal reveal-delay-3 hover-glow">
+                    <div class="text-orange-600 text-2xl md:text-3xl mb-4 text-center"><i class="fab fa-git-alt"></i></div>
+                    <h5 class="font-bold text-center text-sm md:text-base">Công cụ</h5>
+                    <p class="text-[10px] md:text-xs text-slate-400 text-center mt-2">GitHub, Figma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 md:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">Dự án nổi bật</h3>
+                <p class="text-slate-500 text-sm md:text-base">Sản phẩm tâm huyết nhất trong quá trình học tập tại F Poly</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto reveal reveal-delay-1">
+                <div class="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-slate-100 group">
+                    <!-- Ảnh dự án -->
+                    <div class="relative aspect-video overflow-hidden">
+                        <img src="banner11.jpg" alt="Turtle Sneaker" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                             <a href="turtlesneaker.store" target="_blank" class="bg-white text-slate-900 px-6 py-2 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">Xem Demo</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Nội dung mô tả -->
+                    <div class="p-6 md:p-10">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-6 gap-4">
+                            <h4 class="text-xl md:text-3xl font-bold text-slate-900">Turtle Sneaker - Website bán giày</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-orange-100 text-orange-600 text-[10px] font-bold px-3 py-1 rounded-full border border-orange-200 uppercase">PHP</span>
+                                <span class="bg-red-100 text-red-600 text-[10px] font-bold px-3 py-1 rounded-full border border-red-200 uppercase">MYSQL</span>
+                                <span class="bg-blue-100 text-blue-600 text-[10px] font-bold px-3 py-1 rounded-full border border-blue-200 uppercase">HTML5</span>
+                                <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-3 py-1 rounded-full border border-slate-200 uppercase">CSS3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 text-slate-600 leading-relaxed text-sm md:text-base">
+                            <p class="italic text-slate-500">"Giải pháp thương mại điện tử toàn diện cho cửa hàng bán giày"</p>
+                            <p>
+                                Đây là dự án nhóm của tôi, được xây dựng dựa trên nhu cầu thực tế về quản lý bán hàng online. Hệ thống bao gồm đầy đủ các tính năng từ phía người dùng đến hệ thống quản trị chuyên sâu.
+                            </p>
+                            <ul class="hidden sm:block list-disc list-inside space-y-2 pt-2">
+                                <li>Thiết kế giao diện chuẩn Responsive, tối ưu trải nghiệm người dùng.</li>
+                                <li>Tích hợp hệ thống bảo mật và phân quyền Admin/User.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-20 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-10 md:gap-12">
+                <div class="reveal">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6">Kết nối với tôi</h3>
+                    <p class="text-slate-400 mb-8 text-sm md:text-base">Tôi luôn sẵn sàng cho các cơ hội thực tập hoặc dự án Freelance. Hãy gửi tin nhắn cho tôi nhé!</p>
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="flex items-center group cursor-pointer text-sm md:text-base">
+                            <i class="fas fa-envelope text-orange-500 w-8 md:w-10 text-lg md:text-xl group-hover:scale-125 transition-transform"></i>
+                            <span class="group-hover:text-orange-500 transition-colors truncate">vanquan2006k@gmail.com</span>
+                        </div>
+                        <div class="flex items-center group cursor-pointer text-sm md:text-base">
+                            <i class="fas fa-phone text-orange-500 w-8 md:w-10 text-lg md:text-xl group-hover:scale-125 transition-transform"></i>
+                            <span class="group-hover:text-orange-500 transition-colors">0978 914 708</span>
+                        </div>
+                        <div class="flex items-center group cursor-pointer text-sm md:text-base">
+                            <i class="fas fa-map-marker-alt text-orange-500 w-8 md:w-10 text-lg md:text-xl group-hover:scale-125 transition-transform"></i>
+                            <span class="group-hover:text-orange-500 transition-colors">Đông Tiến - Thanh Hóa</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-6 md:p-8 rounded-2xl backdrop-blur-sm reveal reveal-delay-2 border border-white/10 hover:border-orange-500 transition-colors mt-8 md:mt-0">
+                    <form id="contactForm" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium mb-1 text-slate-300">Họ và tên</label>
+                                <input type="text" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium mb-1 text-slate-300">Email</label>
+                                <input type="email" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium mb-1 text-slate-300">Lời nhắn</label>
+                            <textarea rows="4" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg active:scale-95 text-sm uppercase tracking-wider">Gửi lời nhắn</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-black text-center text-slate-500 text-[10px] md:text-xs border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>&copy; 2025 PolyPortfolio. Thiết kế bởi Phạm Văn Quân - FPT Polytechnic.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        const toggleMenu = () => {
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        };
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Scroll Reveal Logic
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Form Submission Animation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.textContent;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner animate-spin"></i> Đang gửi...';
+            
+            setTimeout(() => {
+                const messageBox = document.createElement('div');
+                messageBox.className = 'fixed bottom-5 right-5 left-5 md:left-auto bg-green-500 text-white px-6 py-3 rounded-lg shadow-2xl z-[200] animate-bounce text-sm text-center md:text-left';
+                messageBox.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Thành công! Tôi sẽ liên hệ sớm.';
+                document.body.appendChild(messageBox);
+                
+                setTimeout(() => messageBox.remove(), 4000);
+                
+                btn.disabled = false;
+                btn.textContent = originalText;
+                this.reset();
+            }, 1500);
+        });
+
+        // Smooth Scroll adjustment for Mobile
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const navHeight = 64;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
